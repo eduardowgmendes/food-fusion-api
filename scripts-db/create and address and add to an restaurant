@@ -1,0 +1,19 @@
+INSERT INTO addresses (
+	restaurant_id,
+	street, 
+	local_number, 
+	neighborhood, 
+	city, 
+	state, 
+	country, 
+	zipcode
+) VALUES (
+	26,
+	'Rua Italiana',
+	'511',
+	'Jardim Veneza',
+	'Presidente Venceslau',
+	'São Paulo',
+	'Brasil',
+	'13178416'
+);
