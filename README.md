@@ -101,8 +101,8 @@ Abra um Pull Request.
 
 Se tiver dúvidas ou sugestões, entre em contato:
 
-    E-mail: eduardowilliangm@gmail.com
-    LinkedIn: [Eduardo Mendes](https://www.linkedin.com/in/eduardo-willian-goncalves-mendes/)
+E-mail: eduardowilliangm@gmail.com
+LinkedIn: [Eduardo Mendes](https://www.linkedin.com/in/eduardo-willian-goncalves-mendes/)
 
 🛠️ Desenvolvido com dedicação para transformar a gestão de bares e restaurantes! 🚀
 ```
