@@ -1,7 +1,6 @@
 DROP TABLE restaurants CASCADE;
 DROP TABLE addresses CASCADE;
 DROP TABLE menus CASCADE;
-DROP TABLE menu_items CASCADE;
 DROP TABLE phones CASCADE;
 DROP TABLE showcase_pictures CASCADE;
 

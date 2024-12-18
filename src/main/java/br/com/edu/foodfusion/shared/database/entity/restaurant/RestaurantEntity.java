@@ -10,6 +10,7 @@ import lombok.*;
 import org.modelmapper.ModelMapper;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -34,14 +35,14 @@ public class RestaurantEntity {
     @Column(name = "logo", columnDefinition = "TEXT")
     private String logo;
 
-    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
-    private List<AddressEntity> addresses;
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<AddressEntity> addresses = new ArrayList<>();
 
-    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
-    private List<PhoneEntity> phones;
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<PhoneEntity> phones = new ArrayList<>();
 
-    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
-    private List<MenuEntity> menus;
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<MenuEntity> menus = new ArrayList<>();
 
     @Enumerated(value = EnumType.STRING)
     @Convert(converter = CuisineTypeConverter.class)

@@ -8,6 +8,7 @@ import lombok.*;
 import org.modelmapper.ModelMapper;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @AllArgsConstructor
@@ -84,12 +85,12 @@ public class GoodsEntity {
     private String barcode;
 
     @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "patents", joinColumns = @JoinColumn(name = "goods_id"))
+    @CollectionTable(name = "patents", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "patents")
     private List<String> patents;
 
     @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "certifications", joinColumns = @JoinColumn(name = "goods_id"))
+    @CollectionTable(name = "certifications", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "certifications")
     private List<String> certifications;
 
@@ -99,9 +100,24 @@ public class GoodsEntity {
     @Column(name = "ingredients")
     private String ingredients;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     @Convert(converter = GoodsCategoryConverter.class)
     private GoodsCategoryEnum category;
+
+    @Column(name = "updated_at")
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private LocalDateTime updatedAt;
+
+    @Column(name = "created_at")
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private LocalDateTime createdAt;
+
+    @Column(name = "deleted_at")
+    @Temporal(value = TemporalType.TIMESTAMP)
+    private LocalDateTime deletedAt;
+
+    @Column(name = "is_deleted")
+    private boolean deleted;
 
     public static GoodsDTO toDTO(GoodsEntity goods) {
         return new ModelMapper()

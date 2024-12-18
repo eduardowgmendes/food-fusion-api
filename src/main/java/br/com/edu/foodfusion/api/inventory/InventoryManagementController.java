@@ -1,8 +1,9 @@
 package br.com.edu.foodfusion.api.inventory;
 
 import br.com.edu.foodfusion.shared.database.entity.inventory.goods.GoodsEntity;
-import br.com.edu.foodfusion.shared.database.enums.GoodsCategoryEnum;
 import br.com.edu.foodfusion.shared.dto.inventory.GoodsDTO;
+import br.com.edu.foodfusion.shared.request.CreateGoodsRequest;
+import br.com.edu.foodfusion.shared.request.UpdateGoodsRequest;
 import br.com.edu.foodfusion.shared.response.DefaultResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,11 +21,11 @@ public class InventoryManagementController {
     @Autowired
     private InventoryManagementService inventoryManagementService;
 
-    @GetMapping
+    @GetMapping("/find/by")
     public ResponseEntity<DefaultResponse<List<GoodsDTO>>> findBy(@RequestParam Map<String, String> details) {
         List<GoodsEntity> goodsFound = inventoryManagementService.findAllBy(details);
 
-        if (goodsFound == null)
+        if (goodsFound.isEmpty())
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(DefaultResponse.fail("Nothing found with given parameters."));
 
@@ -61,7 +62,7 @@ public class InventoryManagementController {
     public ResponseEntity<DefaultResponse<List<GoodsDTO>>> findByName(@RequestParam(name = "name") String name) {
         List<GoodsEntity> goods = inventoryManagementService.findByName(name);
 
-        if (goods == null)
+        if (goods.isEmpty())
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(DefaultResponse.create(false, "Nothing found with given parameters.", null));
 
@@ -71,10 +72,10 @@ public class InventoryManagementController {
     }
 
     @GetMapping("/find/by_sku")
-    public ResponseEntity<DefaultResponse<List<GoodsDTO>>> findBySKU(@RequestParam(name = "sku") String code) {
+    public ResponseEntity<DefaultResponse<List<GoodsDTO>>> findBySKU(@RequestParam(name = "code") String code) {
         List<GoodsEntity> goods = inventoryManagementService.findBySKU(code);
 
-        if (goods == null)
+        if (goods.isEmpty())
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(DefaultResponse.create(false, "Nothing found with given parameters.", null));
 
         return ResponseEntity.ok(DefaultResponse.create(true, "Here is the goods found.", goods.stream()
@@ -83,10 +84,10 @@ public class InventoryManagementController {
     }
 
     @GetMapping("/find/by_upc")
-    public ResponseEntity<DefaultResponse<List<GoodsDTO>>> findByUPC(@RequestParam(name = "upc") String code) {
+    public ResponseEntity<DefaultResponse<List<GoodsDTO>>> findByUPC(@RequestParam(name = "code") String code) {
         List<GoodsEntity> goods = inventoryManagementService.findByUPC(code);
 
-        if (goods == null)
+        if (goods.isEmpty())
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(DefaultResponse.create(false, "Nothing found with given parameters.", null));
 
         return ResponseEntity.ok(DefaultResponse.create(true, "Here is the goods found.", goods.stream()
@@ -95,10 +96,10 @@ public class InventoryManagementController {
     }
 
     @GetMapping("/find/by_upca")
-    public ResponseEntity<DefaultResponse<List<GoodsDTO>>> findByUPCA(@RequestParam(name = "upca") String code) {
+    public ResponseEntity<DefaultResponse<List<GoodsDTO>>> findByUPCA(@RequestParam(name = "code") String code) {
         List<GoodsEntity> goods = inventoryManagementService.findByUPCA(code);
 
-        if (goods == null)
+        if (goods.isEmpty())
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(DefaultResponse.create(false, "Nothing found with given parameters.", null));
 
@@ -108,10 +109,10 @@ public class InventoryManagementController {
     }
 
     @GetMapping("/find/by_upce")
-    public ResponseEntity<DefaultResponse<List<GoodsDTO>>> findByUPCE(@RequestParam(name = "upce") String code) {
+    public ResponseEntity<DefaultResponse<List<GoodsDTO>>> findByUPCE(@RequestParam(name = "code") String code) {
         List<GoodsEntity> goods = inventoryManagementService.findByUPCE(code);
 
-        if (goods == null)
+        if (goods.isEmpty())
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(DefaultResponse.create(false, "Nothing found with given parameters.", null));
 
@@ -121,10 +122,10 @@ public class InventoryManagementController {
     }
 
     @GetMapping("/find/by_gtin")
-    public ResponseEntity<DefaultResponse<List<GoodsDTO>>> findByGTIN(@RequestParam(name = "gtin") String gtin) {
+    public ResponseEntity<DefaultResponse<List<GoodsDTO>>> findByGTIN(@RequestParam(name = "code") String gtin) {
         List<GoodsEntity> goods = inventoryManagementService.findByGTIN(gtin);
 
-        if (goods == null)
+        if (goods.isEmpty())
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(DefaultResponse.create(false, "Nothing found with given parameters.", null));
 
@@ -134,10 +135,10 @@ public class InventoryManagementController {
     }
 
     @GetMapping("/find/by_ncm")
-    public ResponseEntity<DefaultResponse<List<GoodsDTO>>> findByNCM(@RequestParam(name = "ncm") String ncm) {
+    public ResponseEntity<DefaultResponse<List<GoodsDTO>>> findByNCM(@RequestParam(name = "code") String ncm) {
         List<GoodsEntity> goods = inventoryManagementService.findByNCM(ncm);
 
-        if (goods == null)
+        if (goods.isEmpty())
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(DefaultResponse.create(false, "Nothing found with given parameters.", null));
 
@@ -147,10 +148,10 @@ public class InventoryManagementController {
     }
 
     @GetMapping("/find/by_barcode")
-    public ResponseEntity<DefaultResponse<List<GoodsDTO>>> findByBarcode(@RequestParam(name = "rawBarcode") String rawBarcode) {
+    public ResponseEntity<DefaultResponse<List<GoodsDTO>>> findByBarcode(@RequestParam(name = "code") String rawBarcode) {
         List<GoodsEntity> goods = inventoryManagementService.findByBarcode(rawBarcode);
 
-        if (goods == null)
+        if (goods.isEmpty())
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(DefaultResponse.create(false, "Nothing found with given parameters.", null));
 
@@ -161,11 +162,9 @@ public class InventoryManagementController {
 
     @GetMapping("/find/by_category")
     public ResponseEntity<DefaultResponse<List<GoodsDTO>>> findByCategory(@RequestParam(name = "category") String category) {
-        GoodsCategoryEnum goodCategory = GoodsCategoryEnum.valueOf(category);
+        List<GoodsEntity> goods = inventoryManagementService.findByCategory(category);
 
-        List<GoodsEntity> goods = inventoryManagementService.findByCategory(goodCategory.name());
-
-        if (goods == null)
+        if (goods.isEmpty())
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(DefaultResponse.create(false, "Nothing found with given parameters.", null));
 
@@ -173,4 +172,49 @@ public class InventoryManagementController {
                 .map(GoodsEntity::toDTO)
                 .collect(Collectors.toList())));
     }
+
+    @PostMapping("/update")
+    public ResponseEntity<DefaultResponse<GoodsDTO>> update(@RequestBody UpdateGoodsRequest updateGoodsRequest) {
+        long goodsId = updateGoodsRequest.getGoodsId();
+
+        GoodsEntity updatedGoods = inventoryManagementService.update(goodsId, GoodsDTO.toEntity(updateGoodsRequest.getGoods()));
+
+        if (updatedGoods == null)
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(DefaultResponse.create(false, "Nothing found with given parameters", null));
+
+        return ResponseEntity
+                .ok(DefaultResponse.create(true, "Goods updated with success.", GoodsEntity.toDTO(updatedGoods)));
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<DefaultResponse<GoodsDTO>> create(@RequestBody CreateGoodsRequest createGoodsRequest) {
+        GoodsEntity goodsCreated = inventoryManagementService.create(GoodsDTO.toEntity(createGoodsRequest.getNewGoods()));
+
+        if (goodsCreated != null)
+            return ResponseEntity
+                    .status(HttpStatus.CREATED)
+                    .body(DefaultResponse.create(true, "Goods added to inventory.", GoodsEntity.toDTO(goodsCreated)));
+
+        return ResponseEntity
+                .badRequest()
+                .body(DefaultResponse.create(false, "Failed to create a new inventory entry.", null));
+    }
+
+    @DeleteMapping("/delete/{goodsId}")
+    public ResponseEntity<DefaultResponse<Long>> deleteById(@PathVariable(name = "goodsId") long goodsId) {
+        GoodsEntity goodsFound = inventoryManagementService.findById(goodsId);
+
+        if (goodsFound != null) {
+            inventoryManagementService.delete(goodsFound.getId());
+            return ResponseEntity
+                    .ok(DefaultResponse.create(true, String.format("Goods at inventory with id %d deleted with success", goodsId), goodsId));
+        }
+
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(DefaultResponse.create(false, "Nothing found with given parameters", null));
+    }
+
 }

@@ -1,5 +1,6 @@
 package br.com.edu.foodfusion.shared.database.entity.contact.info;
 
+import br.com.edu.foodfusion.shared.database.converter.AddressTypeConverter;
 import br.com.edu.foodfusion.shared.database.entity.restaurant.RestaurantEntity;
 import br.com.edu.foodfusion.shared.dto.contact.info.AddressDTO;
 import jakarta.persistence.*;
@@ -40,8 +41,12 @@ public class AddressEntity {
     @Column(name = "zipcode")
     private String zipcode;
 
+    @Convert(converter = AddressTypeConverter.class)
+    @Enumerated(value = EnumType.STRING)
+    private AddressTypeEnum type;
+
     @ManyToOne
-    @JoinColumn(name = "restaurant_id", nullable = false)
+    @JoinColumn(name = "restaurant_id")
     private RestaurantEntity restaurant;
 
     public static AddressDTO toDTO(AddressEntity address) {

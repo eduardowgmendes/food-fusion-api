@@ -1,4 +1,4 @@
-package br.com.edu.foodfusion.api.restaurant.delete.trash;
+package br.com.edu.foodfusion.api.restaurant.delete.erase;
 
 import br.com.edu.foodfusion.shared.database.entity.restaurant.RestaurantEntity;
 import br.com.edu.foodfusion.shared.repository.RestaurantRepository;
@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 @Service
-public class TrashRestaurantService {
+public class EraseRestaurantService {
 
     @Autowired
     private RestaurantRepository restaurantRepository;
 
-    public RestaurantEntity trash(long restaurantId) {
+    public RestaurantEntity erase(long restaurantId) {
         RestaurantEntity restaurantFound = restaurantRepository.findById(restaurantId).orElse(null);
 
         if (restaurantFound != null) {

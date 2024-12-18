@@ -1,0 +1,50 @@
+-- SEQUENCE: public.suppliers_id_seq
+
+-- DROP SEQUENCE IF EXISTS public.suppliers_id_seq;
+
+CREATE SEQUENCE IF NOT EXISTS public.suppliers_id_seq
+INCREMENT 1
+START 1
+MINVALUE 1
+MAXVALUE 9223372036854775807
+CACHE 1;
+
+-- Table: public.suppliers
+
+-- DROP TABLE IF EXISTS public.suppliers;
+
+CREATE TABLE IF NOT EXISTS public.suppliers
+(
+id bigint NOT NULL DEFAULT nextval('suppliers_id_seq'),
+category VARCHAR(255) COLLATE pg_catalog."default",
+company_name VARCHAR(255) COLLATE pg_catalog."default",
+document VARCHAR(14) COLLATE pg_catalog."default" NOT NULL,
+moq integer,
+performance_rating numeric(10,2),
+preferred_payment_method VARCHAR(255) COLLATE pg_catalog."default",
+trade_name VARCHAR(255) COLLATE pg_catalog."default",
+website VARCHAR(255) COLLATE pg_catalog."default",
+address_id bigint,
+phone_id bigint,
+CONSTRAINT PK_suppliers PRIMARY KEY (id),
+CONSTRAINT AK_addresses UNIQUE (address_id),
+CONSTRAINT AK_phones UNIQUE (phone_id),
+CONSTRAINT FK_addresses_suppliers FOREIGN KEY (address_id)
+REFERENCES public.addresses (id) MATCH SIMPLE
+ON UPDATE CASCADE
+ON DELETE CASCADE,
+CONSTRAINT FK_phones_suppliers FOREIGN KEY (phone_id)
+REFERENCES public.phones (id) MATCH SIMPLE
+ON UPDATE CASCADE
+ON DELETE CASCADE,
+CONSTRAINT suppliers_category_check CHECK (category::text = ANY (ARRAY['ELECTRONICS'::VARCHAR, 'FOOD_BEVERAGE'::VARCHAR, 'OFFICE_SUPPLIES'::VARCHAR, 'AUTOMOTIVE'::VARCHAR, 'APPAREL'::VARCHAR, 'RAW_MATERIALS'::VARCHAR, 'PACKAGING'::VARCHAR, 'MACHINERY'::VARCHAR, 'FURNITURE'::VARCHAR, 'CLEANING_SUPPLIES'::VARCHAR, 'MEDICAL_SUPPLIES'::VARCHAR, 'CONSTRUCTION'::VARCHAR, 'IT_SERVICES'::VARCHAR, 'MARKETING_SERVICES'::VARCHAR, 'PROFESSIONAL_SERVICES'::VARCHAR, 'AGRICULTURE'::VARCHAR, 'PRINTING'::VARCHAR, 'PRODUCE'::VARCHAR, 'MEAT_SEAFOOD'::VARCHAR, 'DAIRY'::VARCHAR, 'BAKERY'::VARCHAR, 'GROCERY'::VARCHAR, 'BEVERAGES'::VARCHAR, 'CONDIMENTS'::VARCHAR, 'FROZEN_FOOD'::VARCHAR, 'SANITATION'::VARCHAR, 'EQUIPMENT'::VARCHAR, 'INGREDIENTS'::VARCHAR, 'SEAFOOD'::VARCHAR]::text[])),
+CONSTRAINT suppliers_preferred_payment_method_check CHECK (preferred_payment_method::text = ANY (ARRAY['CASH'::VARCHAR, 'CREDIT_CARD'::VARCHAR, 'DEBIT_CARD'::VARCHAR, 'BANK_TRANSFER'::VARCHAR, 'DIGITAL_WALLET'::VARCHAR, 'ELECTRONIC_CHECK'::VARCHAR, 'COD'::VARCHAR, 'FINANCING'::VARCHAR]::text[]))
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.suppliers
+OWNER to postgres;
+
+ALTER SEQUENCE public.suppliers_id_seq
+OWNED BY suppliers.id;

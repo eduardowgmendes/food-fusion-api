@@ -1,4 +1,4 @@
-package br.com.edu.foodfusion.api.restaurant.delete;
+package br.com.edu.foodfusion.api.restaurant.delete.permanent;
 
 import br.com.edu.foodfusion.shared.response.DefaultResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +20,15 @@ public class DeleteRestaurantController {
     @DeleteMapping("/by_id/{restaurantId}")
     public ResponseEntity<DefaultResponse<Long>> delete(@PathVariable("restaurantId") long restaurantId) {
         deleteRestaurantService.delete(restaurantId);
-        return ResponseEntity.ok(DefaultResponse.create(true, format("Restaurant %d deleted with success", restaurantId), restaurantId));
+        return ResponseEntity
+                .ok(DefaultResponse.create(true, format("Restaurant %d deleted with success", restaurantId), restaurantId));
     }
 
     @DeleteMapping("/all")
     public ResponseEntity<DefaultResponse<String>> deleteAll() {
         deleteRestaurantService.clear();
-        return ResponseEntity.ok(DefaultResponse.create(true, "All restaurants has gone.", null));
+        return ResponseEntity
+                .ok(DefaultResponse.create(true, "All restaurants has gone.", null));
     }
 
 }

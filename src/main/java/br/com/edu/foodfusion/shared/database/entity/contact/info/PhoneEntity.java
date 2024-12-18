@@ -26,7 +26,7 @@ public class PhoneEntity {
     private String phoneNumber;
 
     @ManyToOne
-    @JoinColumn(name = "restaurant_id", nullable = false)
+    @JoinColumn(name = "restaurant_id")
     private RestaurantEntity restaurant;
 
     public static PhoneDTO toDTO(PhoneEntity phone) {

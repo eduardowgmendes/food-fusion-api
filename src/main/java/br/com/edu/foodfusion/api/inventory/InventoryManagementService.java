@@ -1,6 +1,7 @@
 package br.com.edu.foodfusion.api.inventory;
 
 import br.com.edu.foodfusion.shared.database.entity.inventory.goods.GoodsEntity;
+import br.com.edu.foodfusion.shared.database.entity.inventory.goods.specification.GoodsEntitySpecification;
 import br.com.edu.foodfusion.shared.repository.GoodsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ public class InventoryManagementService {
     private GoodsRepository goodsRepository;
 
     public List<GoodsEntity> findAllBy(Map<String, String> params) {
-        return null;
+        return goodsRepository.findAll(GoodsEntitySpecification.withDynamicParams(params));
     }
 
     public List<GoodsEntity> findAll() {
@@ -38,43 +39,86 @@ public class InventoryManagementService {
     }
 
     public List<GoodsEntity> findBySKU(String sku) {
-        return goodsRepository.findBySKULike(sku)
+        return goodsRepository.findBySKU(sku)
                 .orElse(null);
     }
 
     public List<GoodsEntity> findByUPC(String upc) {
-        return goodsRepository.findByUPCLike(upc)
+        return goodsRepository.findByUPC(upc)
                 .orElse(null);
     }
 
     public List<GoodsEntity> findByUPCA(String upcA) {
-        return goodsRepository.findByUPC_ALike(upcA)
+        return goodsRepository.findByUPCA(upcA)
                 .orElse(null);
     }
 
     public List<GoodsEntity> findByUPCE(String upcE) {
-        return goodsRepository.findByUPC_ELike(upcE)
+        return goodsRepository.findByUPCE(upcE)
                 .orElse(null);
     }
 
     public List<GoodsEntity> findByGTIN(String gtin) {
-        return goodsRepository.findByGTINLike(gtin)
+        return goodsRepository.findByGTIN(gtin)
                 .orElse(null);
     }
 
     public List<GoodsEntity> findByNCM(String ncm) {
-        return goodsRepository.findByNCMLike(ncm)
+        return goodsRepository.findByNCM(ncm)
                 .orElse(null);
     }
 
     public List<GoodsEntity> findByBarcode(String rawBarcode) {
-        return goodsRepository.findBybBarcodeLike(rawBarcode)
+        return goodsRepository.findByBarcode(rawBarcode)
                 .orElse(null);
     }
 
     public List<GoodsEntity> findByCategory(String category) {
         return goodsRepository.findByCategory(category)
                 .orElse(null);
+    }
+
+    public GoodsEntity create(GoodsEntity goods) {
+        return goods != null ? goodsRepository.save(goods) : null;
+    }
+
+    public GoodsEntity update(long goodsId, GoodsEntity updatedGoods) {
+        GoodsEntity goodsFound = goodsRepository.findById(goodsId)
+                .orElse(null);
+
+        if (goodsFound != null) {
+            goodsFound.setId(goodsId);
+            goodsFound.setName(updatedGoods.getName());
+            goodsFound.setDescription(updatedGoods.getDescription());
+            goodsFound.setMaker(updatedGoods.getMaker());
+            goodsFound.setModel(updatedGoods.getModel());
+            goodsFound.setUnitPrice(updatedGoods.getUnitPrice());
+            goodsFound.setGrossWeight(updatedGoods.getGrossWeight());
+            goodsFound.setNetWeight(updatedGoods.getNetWeight());
+            goodsFound.setEAN_8(updatedGoods.getEAN_8());
+            goodsFound.setEAN_13(updatedGoods.getEAN_13());
+            goodsFound.setEAN_14(updatedGoods.getEAN_14());
+            goodsFound.setEAN_128(updatedGoods.getEAN_128());
+            goodsFound.setSKU(updatedGoods.getSKU());
+            goodsFound.setUPC(updatedGoods.getUPC());
+            goodsFound.setUPC_A(updatedGoods.getUPC_A());
+            goodsFound.setUPC_E(updatedGoods.getUPC_E());
+            goodsFound.setGTIN(updatedGoods.getGTIN());
+            goodsFound.setNCM(updatedGoods.getNCM());
+            goodsFound.setBarcode(updatedGoods.getBarcode());
+            goodsFound.setPatents(updatedGoods.getPatents());
+            goodsFound.setCertifications(updatedGoods.getCertifications());
+            goodsFound.setTechnicalSpecs(updatedGoods.getTechnicalSpecs());
+            goodsFound.setIngredients(updatedGoods.getIngredients());
+            goodsFound.setCategory(updatedGoods.getCategory());
+            return goodsRepository.save(goodsFound);
+        }
+
+        return null;
+    }
+
+    public void delete(long goodsId) {
+        goodsRepository.deleteById(goodsId);
     }
 
 }

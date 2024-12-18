@@ -1,4 +1,4 @@
-package br.com.edu.foodfusion.api.restaurant.delete;
+package br.com.edu.foodfusion.api.restaurant.delete.permanent;
 
 import br.com.edu.foodfusion.shared.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +9,6 @@ public class DeleteRestaurantService {
 
     @Autowired
     private RestaurantRepository restaurantRepository;
-
-
 
     public void delete(long restaurantId) {
         restaurantRepository.deleteById(restaurantId);

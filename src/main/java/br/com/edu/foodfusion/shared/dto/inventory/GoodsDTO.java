@@ -6,6 +6,7 @@ import lombok.*;
 import org.modelmapper.ModelMapper;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @AllArgsConstructor
@@ -62,6 +63,14 @@ public class GoodsDTO {
     private String ingredients;
 
     private GoodsCategoryEnum category;
+
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
+
+    private LocalDateTime deletedAt;
+
+    private boolean deleted;
 
     public static GoodsEntity toEntity(GoodsDTO goodsDTO) {
         return new ModelMapper()

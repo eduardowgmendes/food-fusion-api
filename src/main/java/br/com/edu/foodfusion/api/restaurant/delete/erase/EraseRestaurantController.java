@@ -1,4 +1,4 @@
-package br.com.edu.foodfusion.api.restaurant.delete.trash;
+package br.com.edu.foodfusion.api.restaurant.delete.erase;
 
 import br.com.edu.foodfusion.shared.database.entity.restaurant.RestaurantEntity;
 import br.com.edu.foodfusion.shared.dto.restaurant.RestaurantDTO;
@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 import static java.lang.String.format;
 
 @RestController
-@RequestMapping("/api/v1/trash/restaurant")
-public class TrashRestaurantController {
+@RequestMapping("/api/v1/erase/restaurant")
+public class EraseRestaurantController {
 
     @Autowired
-    private TrashRestaurantService trashRestaurantService;
+    private EraseRestaurantService eraseRestaurantService;
 
     @GetMapping("/{restaurantId}")
     public ResponseEntity<DefaultResponse<RestaurantDTO>> trash(@PathVariable(name = "restaurantId") long restaurantId) {
-        RestaurantEntity restaurantErased = trashRestaurantService.trash(restaurantId);
+        RestaurantEntity restaurantErased = eraseRestaurantService.erase(restaurantId);
 
         if (restaurantErased != null)
             return ResponseEntity
@@ -35,7 +35,7 @@ public class TrashRestaurantController {
 
     @GetMapping("/recover/{restaurantId}")
     public ResponseEntity<DefaultResponse<RestaurantDTO>> recover(@PathVariable(name = "restaurantId") long restaurantId) {
-        RestaurantEntity restaurantRecovered = trashRestaurantService.recover(restaurantId);
+        RestaurantEntity restaurantRecovered = eraseRestaurantService.recover(restaurantId);
 
         if (restaurantRecovered != null)
             return ResponseEntity
