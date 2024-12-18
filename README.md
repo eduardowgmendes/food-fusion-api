@@ -81,8 +81,8 @@ mvn spring-boot:run
 
 Se você deseja contribuir para o desenvolvimento do FoodFusion, siga estas etapas:
 
-    Faça um fork do repositório.
-    Crie uma branch para sua feature/correção:
+1. Faça um fork do repositório.
+2. Crie uma branch para sua feature/correção:
 
 ```bash
 git checkout -b minha-nova-feature
