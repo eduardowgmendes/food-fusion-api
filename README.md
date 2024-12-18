@@ -61,8 +61,7 @@ git clone https://github.com/eduardowgmendes/food-fusion-api
 ```sql
 CREATE DATABASE foodfusion;
 ```
-2. 
-3. Atualize o arquivo application.properties com suas credenciais do banco.
+2. Atualize o arquivo application.properties com suas credenciais do banco.
 
 3. Executar as Migrações do Banco de Dados
 
@@ -77,6 +76,7 @@ Use o Maven para compilar e executar o projeto:
 ```bash
 mvn spring-boot:run
 ```
+
 📈 Como Contribuir
 
 Se você deseja contribuir para o desenvolvimento do FoodFusion, siga estas etapas:
