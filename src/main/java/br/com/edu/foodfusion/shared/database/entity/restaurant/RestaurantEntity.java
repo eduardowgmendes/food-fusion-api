@@ -6,6 +6,7 @@ import br.com.edu.foodfusion.shared.database.entity.contact.info.PhoneEntity;
 import br.com.edu.foodfusion.shared.database.enums.CuisineType;
 import br.com.edu.foodfusion.shared.dto.restaurant.RestaurantDTO;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.modelmapper.ModelMapper;
 
@@ -44,8 +45,10 @@ public class RestaurantEntity {
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<MenuEntity> menus = new ArrayList<>();
 
+    @NotNull(message = "type is mandatory")
     @Enumerated(value = EnumType.STRING)
     @Convert(converter = CuisineTypeConverter.class)
+    @Column(nullable = false)
     private CuisineType type;
 
     @Column(name = "created_at")

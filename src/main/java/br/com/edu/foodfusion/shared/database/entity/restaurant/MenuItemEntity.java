@@ -29,7 +29,7 @@ public class MenuItemEntity {
     @Column(name = "item_description", columnDefinition = "TEXT")
     private String description;
 
-    @OneToMany(mappedBy = "menuItem", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "menuItem", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @Column(name = "showcase_pictures")
     private List<ShowcasePictureEntity> showcasePictures;
 

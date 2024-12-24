@@ -26,7 +26,7 @@ public class MenuEntity {
     @Column(name = "menu_description", columnDefinition = "TEXT")
     private String description;
 
-    @OneToMany(mappedBy = "menu", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "menu", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<MenuItemEntity> items;
 
     @ManyToOne
