@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 @NoArgsConstructor
 @EqualsAndHashCode
 public class AddressDTO {
+
     private String street;
     private String localNumber;
     private String neighborhood;

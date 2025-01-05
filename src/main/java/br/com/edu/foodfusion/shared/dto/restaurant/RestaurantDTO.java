@@ -4,6 +4,7 @@ import br.com.edu.foodfusion.shared.database.enums.CuisineType;
 import br.com.edu.foodfusion.shared.database.entity.restaurant.RestaurantEntity;
 import br.com.edu.foodfusion.shared.dto.contact.info.AddressDTO;
 import br.com.edu.foodfusion.shared.dto.contact.info.PhoneDTO;
+import br.com.edu.foodfusion.shared.dto.contact.info.email.EmailDTO;
 import lombok.*;
 import org.modelmapper.ModelMapper;
 
@@ -26,6 +27,7 @@ public class RestaurantDTO {
     private List<AddressDTO> addresses;
     private List<PhoneDTO> phones;
     private List<MenuDTO> menus;
+    private List<EmailDTO> emails;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private LocalDateTime deletedAt;

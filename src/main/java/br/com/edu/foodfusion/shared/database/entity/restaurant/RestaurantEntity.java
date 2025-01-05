@@ -3,6 +3,7 @@ package br.com.edu.foodfusion.shared.database.entity.restaurant;
 import br.com.edu.foodfusion.shared.database.converter.CuisineTypeConverter;
 import br.com.edu.foodfusion.shared.database.entity.contact.info.AddressEntity;
 import br.com.edu.foodfusion.shared.database.entity.contact.info.PhoneEntity;
+import br.com.edu.foodfusion.shared.database.entity.contact.info.email.EmailEntity;
 import br.com.edu.foodfusion.shared.database.enums.CuisineType;
 import br.com.edu.foodfusion.shared.dto.restaurant.RestaurantDTO;
 import jakarta.persistence.*;
@@ -47,6 +48,9 @@ public class RestaurantEntity {
 
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<MenuEntity> menus = new ArrayList<>();
+
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<EmailEntity> emails = new ArrayList<>();
 
     @NotNull(message = "type is mandatory")
     @Enumerated(value = EnumType.STRING)
