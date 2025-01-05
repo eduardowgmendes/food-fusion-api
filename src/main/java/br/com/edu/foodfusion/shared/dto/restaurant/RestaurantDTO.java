@@ -22,6 +22,7 @@ public class RestaurantDTO {
     private String description;
     private CuisineType type;
     private String logo;
+    private String backdrop;
     private List<AddressDTO> addresses;
     private List<PhoneDTO> phones;
     private List<MenuDTO> menus;

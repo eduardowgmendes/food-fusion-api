@@ -36,6 +36,9 @@ public class RestaurantEntity {
     @Column(name = "logo", columnDefinition = "TEXT")
     private String logo;
 
+    @Column(name = "backdrop", columnDefinition = "TEXT")
+    private String backdrop;
+
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<AddressEntity> addresses = new ArrayList<>();
 
