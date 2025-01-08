@@ -1,6 +1,7 @@
 package br.com.edu.foodfusion.shared.database.entity.restaurant;
 
 import br.com.edu.foodfusion.shared.database.converter.CuisineTypeConverter;
+import br.com.edu.foodfusion.shared.database.entity.ServiceTimeEntity;
 import br.com.edu.foodfusion.shared.database.entity.contact.info.AddressEntity;
 import br.com.edu.foodfusion.shared.database.entity.contact.info.PhoneEntity;
 import br.com.edu.foodfusion.shared.database.entity.contact.info.email.EmailEntity;
@@ -51,6 +52,9 @@ public class RestaurantEntity {
 
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<EmailEntity> emails = new ArrayList<>();
+
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<ServiceTimeEntity> serviceTimes;
 
     @NotNull(message = "type is mandatory")
     @Enumerated(value = EnumType.STRING)
