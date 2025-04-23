@@ -25,6 +25,10 @@ public class CreateRestaurantService {
     public RestaurantEntity create(RestaurantEntity restaurant) {
         if (restaurant != null) {
             restaurant.setCreatedAt(LocalDateTime.now());
+
+            restaurant.getServiceTimes()
+                    .forEach(serviceTime -> serviceTime.setRestaurant(restaurant));
+
             return restaurantRepository.save(restaurant);
         }
         return null;
