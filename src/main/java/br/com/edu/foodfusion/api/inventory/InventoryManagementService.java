@@ -6,6 +6,7 @@ import br.com.edu.foodfusion.shared.repository.GoodsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -79,7 +80,11 @@ public class InventoryManagementService {
     }
 
     public GoodsEntity create(GoodsEntity goods) {
-        return goods != null ? goodsRepository.save(goods) : null;
+        if (goods != null) {
+            goods.setCreatedAt(LocalDateTime.now());
+            return goodsRepository.save(goods);
+        }
+        return null;
     }
 
     public GoodsEntity update(long goodsId, GoodsEntity updatedGoods) {
@@ -111,6 +116,7 @@ public class InventoryManagementService {
             goodsFound.setTechnicalSpecs(updatedGoods.getTechnicalSpecs());
             goodsFound.setIngredients(updatedGoods.getIngredients());
             goodsFound.setCategory(updatedGoods.getCategory());
+            goodsFound.setUpdatedAt(LocalDateTime.now());
             return goodsRepository.save(goodsFound);
         }
 

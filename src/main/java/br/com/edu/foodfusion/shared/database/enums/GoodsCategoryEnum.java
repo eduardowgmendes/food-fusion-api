@@ -47,7 +47,27 @@ public enum GoodsCategoryEnum {
     OILS_VINEGARS("Oils & Vinegars"),
     INTERNATIONAL_FOOD("International Food"),
     HEALTHY_FOOD("Healthy Food"),
-    BEER_WINE_SPIRITS("Beer, Wine & Spirits");
+    BEER_WINE_SPIRITS("Beer, Wine & Spirits"),
+
+    // Novas categorias para alimentos compostos e ingredientes
+    PREPARED_MEALS("Prepared Meals"),
+    FROZEN_PIZZA("Frozen Pizza"),
+    FROZEN_HAMBURGERS("Frozen Hamburgers"),
+    BURGER_KITS("Burger Kits"),
+    PIZZA_KITS("Pizza Kits"),
+    COOKING_SAUCES("Cooking Sauces"),
+    PASTA_SAUCES("Pasta Sauces"),
+    PASTA("Pasta"),
+    RICE_AND_GRAINS("Rice and Grains"),
+    SPICES_AND_HERBS("Spices and Herbs"),
+    SWEETENERS("Sweeteners"),
+    BAKING_INGREDIENTS("Baking Ingredients"),
+    PLANT_BASED_MEALS("Plant-based Meals"),
+    VEGAN_PRODUCTS("Vegan Products"),
+    VEGETARIAN_PRODUCTS("Vegetarian Products"),
+    GLUTEN_FREE_PRODUCTS("Gluten-Free Products"),
+    SET_MEAL("Set Meal"),
+    TAKEOUT_MEAL("Takeout Meal");
 
     private final String displayName;
 

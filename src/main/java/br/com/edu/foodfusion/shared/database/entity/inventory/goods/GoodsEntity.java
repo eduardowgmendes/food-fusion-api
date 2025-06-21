@@ -51,28 +51,28 @@ public class GoodsEntity {
     @Column(name = "net_weight", precision = 10, scale = 2)
     private BigDecimal netWeight;
 
-    @Column(name = "ean_8_code", length = 8)
+    @Column(name = "ean_8_code")
     private String EAN_8;
 
-    @Column(name = "ean_13_code", length = 13)
+    @Column(name = "ean_13_code")
     private String EAN_13;
 
-    @Column(name = "ean_14_code", length = 14)
+    @Column(name = "ean_14_code")
     private String EAN_14;
 
-    @Column(name = "ean_128_code", length = 80)
+    @Column(name = "ean_128_code")
     private String EAN_128;
 
     @Column(name = "sku_code")
     private String SKU;
 
-    @Column(name = "upc_code", length = 12)
+    @Column(name = "upc_code")
     private String UPC;
 
-    @Column(name = "upc_a_code", length = 12)
+    @Column(name = "upc_a_code")
     private String UPC_A;
 
-    @Column(name = "upc_e_code", length = 6)
+    @Column(name = "upc_e_code")
     private String UPC_E;
 
     @Column(name = "gtin_code")
