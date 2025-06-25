@@ -1,6 +1,6 @@
 package br.com.edu.foodfusion.shared.database.entity;
 
-import br.com.edu.foodfusion.shared.database.entity.restaurant.RestaurantEntity;
+import br.com.edu.foodfusion.shared.database.entity.establishment.restaurant.RestaurantEntity;
 import br.com.edu.foodfusion.shared.dto.restaurant.ServiceTimeDTO;
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,7 +14,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "service_times")
+@Table(name = "service_times", schema = "establishments")
 public class ServiceTimeEntity {
 
     @Id

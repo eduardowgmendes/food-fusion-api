@@ -1,6 +1,6 @@
 package br.com.edu.foodfusion.shared.database.converter;
 
-import br.com.edu.foodfusion.shared.database.entity.contact.info.AddressTypeEnum;
+import br.com.edu.foodfusion.shared.database.enums.AddressTypeEnum;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 

@@ -1,22 +1,22 @@
 package br.com.edu.foodfusion.shared.database.converter;
 
-import br.com.edu.foodfusion.shared.database.enums.CuisineType;
+import br.com.edu.foodfusion.shared.database.enums.CuisineTypeEnum;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 @Converter(autoApply = true)
-public class CuisineTypeConverter implements AttributeConverter<CuisineType, String> {
+public class CuisineTypeConverter implements AttributeConverter<CuisineTypeEnum, String> {
 
     @Override
-    public String convertToDatabaseColumn(CuisineType attribute) {
+    public String convertToDatabaseColumn(CuisineTypeEnum attribute) {
         if (attribute == null) return null;
         return attribute.name();
     }
 
     @Override
-    public CuisineType convertToEntityAttribute(String attribute) {
+    public CuisineTypeEnum convertToEntityAttribute(String attribute) {
         if (attribute == null) return null;
-        return CuisineType.valueOf(attribute);
+        return CuisineTypeEnum.valueOf(attribute);
     }
 
 }

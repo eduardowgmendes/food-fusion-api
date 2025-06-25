@@ -1,6 +1,6 @@
 package br.com.edu.foodfusion.shared.database.builder.entity;
 
-import br.com.edu.foodfusion.shared.database.entity.contact.info.AddressEntity;
+import br.com.edu.foodfusion.shared.database.entity.contact.address.AddressEntity;
 
 public class AddressEntityBuilder {
 

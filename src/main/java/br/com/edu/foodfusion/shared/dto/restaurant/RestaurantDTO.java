@@ -1,7 +1,7 @@
 package br.com.edu.foodfusion.shared.dto.restaurant;
 
-import br.com.edu.foodfusion.shared.database.entity.restaurant.RestaurantEntity;
-import br.com.edu.foodfusion.shared.database.enums.CuisineType;
+import br.com.edu.foodfusion.shared.database.entity.establishment.restaurant.RestaurantEntity;
+import br.com.edu.foodfusion.shared.database.enums.CuisineTypeEnum;
 import br.com.edu.foodfusion.shared.dto.contact.info.AddressDTO;
 import br.com.edu.foodfusion.shared.dto.contact.info.PhoneDTO;
 import br.com.edu.foodfusion.shared.dto.contact.info.email.EmailDTO;
@@ -21,13 +21,13 @@ public class RestaurantDTO {
     private long id;
     private String name;
     private String description;
-    private CuisineType type;
+    private CuisineTypeEnum type;
     private String logo;
     private String backdrop;
-    private List<AddressDTO> addresses;
-    private List<PhoneDTO> phones;
+    private AddressDTO address;
+    private PhoneDTO phone;
     private List<MenuDTO> menus;
-    private List<EmailDTO> emails;
+    private EmailDTO email;
     private List<ServiceTimeDTO> serviceTimes;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

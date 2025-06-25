@@ -1,7 +1,7 @@
 package br.com.edu.foodfusion.shared.database.builder.entity;
 
-import br.com.edu.foodfusion.shared.database.entity.restaurant.MenuEntity;
-import br.com.edu.foodfusion.shared.database.entity.restaurant.MenuItemEntity;
+import br.com.edu.foodfusion.shared.database.entity.establishment.restaurant.MenuEntity;
+import br.com.edu.foodfusion.shared.database.entity.establishment.restaurant.MenuItemEntity;
 
 import java.util.List;
 

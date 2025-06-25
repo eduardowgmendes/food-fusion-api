@@ -17,7 +17,7 @@ import java.util.List;
 @Setter
 @EqualsAndHashCode
 @Entity
-@Table(name = "goods")
+@Table(name = "goods", schema = "inventory")
 public class GoodsEntity {
 
     @Id
@@ -85,12 +85,12 @@ public class GoodsEntity {
     private String barcode;
 
     @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "patents", joinColumns = @JoinColumn(name = "id"))
+    @CollectionTable(name = "patents", schema = "inventory", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "patents")
     private List<String> patents;
 
     @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "certifications", joinColumns = @JoinColumn(name = "id"))
+    @CollectionTable(name = "certifications", schema = "inventory", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "certifications")
     private List<String> certifications;
 

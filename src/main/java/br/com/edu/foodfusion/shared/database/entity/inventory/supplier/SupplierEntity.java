@@ -2,8 +2,8 @@ package br.com.edu.foodfusion.shared.database.entity.inventory.supplier;
 
 import br.com.edu.foodfusion.shared.database.converter.PaymentMethodConverter;
 import br.com.edu.foodfusion.shared.database.converter.SupplierCategoryConverter;
-import br.com.edu.foodfusion.shared.database.entity.contact.info.AddressEntity;
-import br.com.edu.foodfusion.shared.database.entity.contact.info.PhoneEntity;
+import br.com.edu.foodfusion.shared.database.entity.contact.address.AddressEntity;
+import br.com.edu.foodfusion.shared.database.entity.contact.phone.PhoneEntity;
 import br.com.edu.foodfusion.shared.database.enums.PaymentMethodEnum;
 import br.com.edu.foodfusion.shared.database.enums.SupplierCategoryEnum;
 import jakarta.persistence.*;
@@ -18,7 +18,7 @@ import java.util.List;
 @Setter
 @EqualsAndHashCode
 @Entity
-@Table(name = "suppliers")
+@Table(name = "suppliers", schema = "inventory")
 public class SupplierEntity {
 
     @Id
@@ -61,7 +61,7 @@ public class SupplierEntity {
      * Notes: A section for any additional notes or information about the supplier, such as special instructions for placing orders or contact details for specific departments.
      */
     @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "notes", joinColumns = @JoinColumn(name = "supplier_id"))
+    @CollectionTable(name = "notes", schema = "inventory", joinColumns = @JoinColumn(name = "supplier_id"))
     @Column(name = "notes")
     private List<String> notes;
 

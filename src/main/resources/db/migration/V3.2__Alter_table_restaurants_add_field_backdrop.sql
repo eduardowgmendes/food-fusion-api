@@ -1,1 +1,0 @@
-ALTER TABLE restaurants ADD COLUMN backdrop TEXT;

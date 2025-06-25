@@ -1,6 +1,6 @@
 package br.com.edu.foodfusion.shared.dto.contact.info;
 
-import br.com.edu.foodfusion.shared.database.entity.contact.info.PhoneEntity;
+import br.com.edu.foodfusion.shared.database.entity.contact.phone.PhoneEntity;
 import lombok.*;
 import org.modelmapper.ModelMapper;
 
