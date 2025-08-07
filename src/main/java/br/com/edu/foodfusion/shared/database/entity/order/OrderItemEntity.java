@@ -25,6 +25,10 @@ public class OrderItemEntity {
 
     private String title;
     private String description;
+
+    @Column(name = "main_picture", columnDefinition ="TEXT")
+    private String mainPicture;
+
     private BigDecimal unitPrice;
     private Integer quantity;
 

@@ -20,6 +20,8 @@ public class OrderItemDTO {
     @NotNull(message = "Title is required.")
     private String title;
 
+    private String mainPicture;
+
     @NotNull(message = "Price is required.")
     private BigDecimal price;
 

@@ -6,6 +6,7 @@ import br.com.edu.foodfusion.shared.database.entity.customer.CustomerEntity;
 import br.com.edu.foodfusion.shared.database.entity.establishment.restaurant.MenuEntity;
 import br.com.edu.foodfusion.shared.database.entity.establishment.restaurant.MenuItemEntity;
 import br.com.edu.foodfusion.shared.database.entity.establishment.restaurant.RestaurantEntity;
+import br.com.edu.foodfusion.shared.database.entity.establishment.restaurant.picture.ShowcasePictureEntity;
 import br.com.edu.foodfusion.shared.database.entity.order.OrderEntity;
 import br.com.edu.foodfusion.shared.database.entity.order.OrderItemEntity;
 import br.com.edu.foodfusion.shared.database.enums.OrderStatusEnum;
@@ -83,12 +84,17 @@ public class OrderService {
 
         for (Long itemId : itemsId) {
             MenuItemEntity item = menuItemById.get(itemId);
+
             if (item != null) {
                 OrderItemEntity orderItem = new OrderItemEntity();
                 orderItem.setTitle(item.getName());
                 orderItem.setUnitPrice(BigDecimal.valueOf(item.getUnitPrice()));
                 orderItem.setQuantity(1);
                 orderItem.setOrder(order);
+                orderItem.setMainPicture(item.getShowcasePictures().stream()
+                        .map(ShowcasePictureEntity::getBase64)
+                        .findFirst()
+                        .orElse(null));
                 orderItems.add(orderItem);
             } else {
                 throw new NoSuchElementException("MenuItem not found with id: " + itemId);

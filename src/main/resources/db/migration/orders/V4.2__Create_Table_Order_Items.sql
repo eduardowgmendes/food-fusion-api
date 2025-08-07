@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS orders.order_items
     order_id bigint,
     title character varying(255) COLLATE pg_catalog."default",
     description character varying COLLATE pg_catalog."default",
+    main_picture text COLLATE pg_catalog."default",
     CONSTRAINT order_items_pkey PRIMARY KEY (id),
     CONSTRAINT fk_order_items_order_id_orders_id FOREIGN KEY (order_id)
         REFERENCES orders.orders (id) MATCH SIMPLE

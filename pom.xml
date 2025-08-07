@@ -10,7 +10,7 @@
     </parent>
     <groupId>br.com.edu.foodfusion</groupId>
     <artifactId>food-fusion</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <name>food-fusion</name>
     <description>FoodFusion is a state-of-the-art point of sale (POS) system designed specifically for bars and
         restaurants. With an intuitive interface and a comprehensive suite of features, FoodFusion streamlines your
@@ -117,6 +117,13 @@
             <version>2.3.230</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.5.0</version>
+        </dependency>
+
 
     </dependencies>
 

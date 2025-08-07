@@ -2,6 +2,8 @@ package br.com.edu.foodfusion.shared.database.enums;
 
 import lombok.Getter;
 
+import java.util.Arrays;
+
 @Getter
 public enum CuisineTypeEnum {
 
@@ -34,6 +36,10 @@ public enum CuisineTypeEnum {
         for (CuisineTypeEnum cuisineTypeEnum : values())
             if (cuisineTypeEnum.getCode() == code) return cuisineTypeEnum;
         throw new IllegalArgumentException("Cuisine not found with given code: " + code);
+    }
+
+    public static void main(String[] args) {
+        Arrays.stream(values()).forEach(System.out::println);
     }
 
 }
